@@ -1,0 +1,23 @@
+#忽略题目对时间复杂度的要求，自己的代码：
+
+        if not nums:
+            return 
+        nums = list(set(nums))
+        nums.sort(reverse=True)
+        if len(nums) < 3:
+            return nums[0]
+        else:
+            return nums[2]
+
+#时间复杂度的要求是O(n),看看别人的方法：
+class Solution(object):
+    def thirdMax(self, nums):
+        v = [float('-inf'), float('-inf'), float('-inf')]
+        for num in nums:
+            if num not in v:
+                if num > v[0]:   v = [num, v[0], v[1]]
+                elif num > v[1]: v = [v[0], num, v[1]]
+                elif num > v[2]: v = [v[0], v[1], num]
+        return max(nums) if float('-inf') in v else v[2]
+
+写这个程序的最直接想法是设置三个变量存储最大，第二大，第三大的数字,把它们初值设置成float（‘-inf’）【负无穷】
