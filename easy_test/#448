@@ -1,0 +1,9 @@
+1.正负标记法
+依次把数字nums[i]所对应的索引所指的数变为负数
+最后为数组中为正的数字所对应的index+1就是数组中消失的数
+
+def FindDisappearedNumbers(self,nums):
+  for i in range(len(nums)):
+    index = abs(nums[i]) - 1
+    nums[index] = -abs(nums[index])
+  return [i+1 for i in range(len(nums)) if nums[i] > 0]
